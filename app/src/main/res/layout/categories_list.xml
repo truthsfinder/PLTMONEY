@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/categoriesEditBtn"
+        android:layout_width="68dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/newCategoryTV"
+        android:text="EDIT" />
+
+    <Button
+        android:id="@+id/categoriesDelBtn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/categoriesEditBtn"
+        android:text="Del" />
+
+    <TextView
+        android:id="@+id/newCategoryTV"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_alignBottom="@+id/categoriesEditBtn"
+        android:layout_alignParentStart="true"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Item"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+</RelativeLayout>

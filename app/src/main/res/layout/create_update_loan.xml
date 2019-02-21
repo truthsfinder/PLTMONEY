@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="491dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="10dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="219dp"
+            android:layout_height="77dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="23dp"
+            android:text="LOAN"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="40dp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="33dp" />
+
+
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="301dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editDate"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="Name of Borrower"
+            android:inputType="textPersonName"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="135dp"
+            tools:layout_editor_absoluteY="145dp" />
+
+        <EditText
+            android:id="@+id/editDate"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editDue"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="Date Borrowed"
+            android:inputType="text|date"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="135dp"
+            tools:layout_editor_absoluteY="191dp" />
+
+        <EditText
+            android:id="@+id/editDue"
+            android:layout_width="299dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ems="10"
+            android:hint="Due Date "
+            android:inputType="date"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="135dp"
+            tools:layout_editor_absoluteY="237dp" />
+
+
+        <EditText
+            android:id="@+id/editLoanAmount"
+            android:layout_width="299dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="168dp"
+            android:ems="10"
+            android:hint="Amount"
+            android:inputType="number"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="135dp"
+            tools:layout_editor_absoluteY="283dp" />
+
+        <Button
+            android:id="@+id/loancancelBtn"
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_marginBottom="52dp"
+            android:layout_marginStart="-40dp"
+            android:text="Cancel"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="361dp" />
+
+        <Button
+            android:id="@+id/loansaveBtn"
+            android:layout_width="127dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/loancancelBtn"
+            android:layout_marginEnd="48dp"
+            android:text="Save"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="214dp"
+            tools:layout_editor_absoluteY="361dp" />
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

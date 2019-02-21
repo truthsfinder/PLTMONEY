@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints"
+        android:id="@+id/container"
+        tools:layout_editor_absoluteY="10dp">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="140dp"
+            android:layout_height="41dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="11dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="PLT-Money"
+            android:textColor="#006622"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="1dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="45dp"
+            android:visibility="visible" />
+
+        <TableLayout
+            android:id="@+id/budgettbl_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/editBudgetBtn"
+            android:background="#000000"
+            android:shrinkColumns="*"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:text="DATE" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:text="CATEGORY" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:text="AMOUNT" />
+
+            </TableRow>
+
+
+        </TableLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/budgettbl_header"
+            android:overScrollMode="never"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="141dp">
+
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/txtBudget"
+            android:layout_width="171dp"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView1"
+            android:layout_marginTop="24dp"
+            android:text="BUDGET"
+            android:textAlignment="textStart"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="75dp" />
+
+        <Spinner
+            android:id="@+id/txtDate"
+            android:layout_width="125dp"
+            android:layout_height="38dp"
+            android:layout_above="@+id/budgettbl_header"
+            android:layout_marginEnd="1dp"
+            android:layout_toStartOf="@+id/editBudgetBtn"
+            android:text="DATE"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="#804d00"
+            android:textSize="25sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="75dp">
+        </Spinner>
+
+        <Button
+            android:id="@+id/editBudgetBtn"
+            android:layout_width="66dp"
+            android:layout_height="39dp"
+            android:layout_alignBottom="@+id/txtBudget"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:text="Edit"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="147dp"
+            tools:layout_editor_absoluteY="75dp" />
+
+        <ListView
+            android:id="@+id/expense_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/budgettbl_header">
+
+        </ListView>
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
