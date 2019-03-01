@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2019 at 01:18 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Generation Time: Feb 26, 2019 at 11:53 AM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,7 +48,9 @@ INSERT INTO `budget` (`budget_id`, `user_id`, `budget_amount`, `budget_category`
 (5, 1, 5000, 'Weekly', 'closed'),
 (6, 1, 5000, 'Daily', 'closed'),
 (7, 1, 10000, 'Weekly', 'closed'),
-(8, 1, 5000, 'Daily', 'active');
+(8, 1, 5000, 'Daily', 'active'),
+(9, 1, 2500, 'Weekly', 'closed'),
+(10, 1, 60000, 'Monthly', 'closed');
 
 -- --------------------------------------------------------
 
@@ -72,7 +74,8 @@ INSERT INTO `category` (`category_id`, `user_id`, `category_name`, `category_sta
 (7, 1, 'test 4', 'active'),
 (8, 1, 'test 5', 'active'),
 (9, 1, 'test 6', 'active'),
-(10, 1, 'test 7', 'active');
+(10, 1, 'test 7', 'active'),
+(11, 1, 'ydtsys', 'active');
 
 -- --------------------------------------------------------
 
@@ -94,7 +97,8 @@ CREATE TABLE `expense` (
 --
 
 INSERT INTO `expense` (`expense_id`, `budget_id`, `category_name`, `expense_date`, `expense_amount`, `expense_status`) VALUES
-(1, 8, 'Test', '2019-02-06', 1000, 'active');
+(1, 8, 'Test', '2019-02-06', 1000, 'active'),
+(2, 8, 'test 5', '2019-02-26', 100, 'active');
 
 -- --------------------------------------------------------
 
@@ -151,19 +155,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budget_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `budget_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `expense`
 --
 ALTER TABLE `expense`
-  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`

@@ -129,7 +129,7 @@ public class Login extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(Login.this, "Cannot connect to the server!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Login.this, "Cannot connect to the server!" + error, Toast.LENGTH_LONG).show();
                                 bar.setVisibility(View.GONE);
                             }
                         }) {

@@ -44,9 +44,9 @@ public class CategoriesAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = context.getLayoutInflater();
         final View listViewItem = inflater.inflate(R.layout.categories_list, null, true);
 
-        TextView tv_category_name = (TextView) listViewItem.findViewById(R.id.newCategoryTV);
-        Button btn_update = (Button) listViewItem.findViewById(R.id.categoriesEditBtn);
-        Button btn_delete = (Button) listViewItem.findViewById(R.id.categoriesDelBtn);
+        TextView tv_category_name = listViewItem.findViewById(R.id.newCategoryTV);
+        Button btn_update = listViewItem.findViewById(R.id.categoriesEditBtn);
+        Button btn_delete = listViewItem.findViewById(R.id.categoriesDelBtn);
         tv_category_name.setText(category_name[position]);
 
         btn_update.setOnClickListener(new View.OnClickListener() {

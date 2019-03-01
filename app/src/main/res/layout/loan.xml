@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:padding="5dp"
     android:layout_height="match_parent">
 
         <RelativeLayout
@@ -14,7 +15,8 @@
 
             <TableLayout
                 android:id="@+id/loantbl_header"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="10dp"
                 android:layout_height="wrap_content"
                 android:background="#000000"
                 android:shrinkColumns="*"
@@ -32,7 +34,7 @@
 
                     <TextView
                         android:id="@+id/textName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:background="@android:color/white"
                         android:gravity="center"
@@ -40,11 +42,11 @@
 
                     <TextView
                         android:id="@+id/textDate"
-                        android:layout_width="wrap_content"
+                        android:layout_width="69dp"
                         android:layout_height="wrap_content"
                         android:background="@android:color/white"
                         android:gravity="center"
-                        android:text="DATE BORROWED" />
+                        android:text="BORROWED" />
 
                     <TextView
                         android:id="@+id/textDue"
@@ -80,6 +82,18 @@
                 tools:layout_editor_absoluteX="106dp"
                 tools:layout_editor_absoluteY="16dp" />
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/loantbl_header"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:visibility="gone"
+                app:layout_anchorGravity="center_vertical|center_horizontal" />
+
+
             <ScrollView
                 android:id="@+id/scrollView3"
                 android:layout_width="383dp"
@@ -105,44 +119,21 @@
 
             <Button
                 android:id="@+id/createBtn"
-                android:layout_width="108dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="11dp"
+                android:layout_above="@+id/loantbl_header"
                 android:layout_weight="1"
-                android:text="CREATE"
+                android:text="ADD"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="447dp" />
 
-            <Button
-                android:id="@+id/updateBtn"
-                android:layout_width="108dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/createBtn"
-                android:layout_alignBottom="@+id/createBtn"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1"
-                android:text="UPDATE"
-                android:textSize="14sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="138dp"
-                tools:layout_editor_absoluteY="447dp" />
-
-            <Button
-                android:id="@+id/deleteBtn"
-                android:layout_width="108dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/updateBtn"
-                android:layout_alignBottom="@+id/updateBtn"
-                android:layout_marginStart="11dp"
-                android:layout_toEndOf="@+id/updateBtn"
-                android:layout_weight="1"
-                android:text="DELETE"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="260dp"
-                tools:layout_editor_absoluteY="447dp" />
+            <ListView
+                android:id="@+id/loan_listview"
+                android:layout_width="match_parent"
+                android:layout_height="357dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/loantbl_header" />
 
 
         </RelativeLayout>

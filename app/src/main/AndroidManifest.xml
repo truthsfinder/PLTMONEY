@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.nam.plt_money">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -21,12 +21,14 @@
         </activity>
         <activity android:name=".Register" />
         <activity android:name=".Loan" />
-        <activity android:name=".AddUpdateLoan" />
+        <activity android:name=".AddLoan" />
         <activity android:name=".Savings" />
         <activity android:name=".Expenses" />
         <activity android:name=".Categories" />
         <activity android:name=".Budget" />
-        <activity android:name=".Summary" />
+        <activity
+            android:name=".Summary"
+            android:label="Expense Summary" />
         <activity
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard"
@@ -37,10 +39,17 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UpdateCategory"
-            android:label="Update Category"></activity>
+            android:label="Update Category" />
         <activity
             android:name=".UpdateBudget"
-            android:label="Update Budget"></activity>
+            android:label="Update Budget" />
+        <activity
+            android:name=".UpdateExpense"
+            android:label="@string/title_activity_update_expense"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UpdateLoan"
+            android:label="@string/title_activity_update_loan"></activity>
     </application>
 
 </manifest>

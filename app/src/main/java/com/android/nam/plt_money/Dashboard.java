@@ -92,7 +92,7 @@ public class Dashboard extends AppCompatActivity
         }else if (id == R.id.nav_budget) {
             startActivity(new Intent(Dashboard.this, Budget.class));
         } else if (id == R.id.nav_loan) {
-
+            startActivity(new Intent(Dashboard.this, Loan.class));
         } else if (id == R.id.nav_expenses) {
             SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
             int budget_id = prefs.getInt("budget_id", 0);
@@ -104,8 +104,16 @@ public class Dashboard extends AppCompatActivity
         } else if(id == R.id.nav_category){
             Intent intent = new Intent(Dashboard.this, Categories.class);
             startActivity(intent);
+        }else if(id == R.id.nav_savings){
+            Intent intent = new Intent(Dashboard.this, Savings.class);
+            startActivity(intent);
         }else if (id == R.id.nav_summary) {
+            SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+            int budget_id = prefs.getInt("budget_id", 0);
 
+            Intent intent = new Intent(Dashboard.this, Summary.class);
+            intent.putExtra("budget_id", budget_id);
+            startActivity(intent);
         } else if (id == R.id.nav_logout) {
             SharedPreferences settings = getSharedPreferences("MyPrefs", MODE_PRIVATE);
             final SharedPreferences.Editor prefEditor = settings.edit();

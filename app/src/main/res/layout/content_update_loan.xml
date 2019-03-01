@@ -29,6 +29,17 @@
             tools:layout_editor_absoluteX="83dp"
             tools:layout_editor_absoluteY="33dp" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editName"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:visibility="gone"
+            app:layout_anchorGravity="center_vertical|center_horizontal" />
+
 
         <EditText
             android:id="@+id/editName"
@@ -49,9 +60,9 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/editDue"
             android:layout_centerHorizontal="true"
-            android:ems="10"
+            android:onClick="setDate"
+            android:clickable="true"
             android:hint="Date Borrowed"
-            android:inputType="text|date"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="135dp"
             tools:layout_editor_absoluteY="191dp" />
@@ -61,9 +72,9 @@
             android:layout_width="299dp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:ems="10"
             android:hint="Due Date "
-            android:inputType="date"
+            android:onClick="setDate2"
+            android:clickable="true"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="135dp"
             tools:layout_editor_absoluteY="237dp" />
@@ -76,9 +87,8 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="168dp"
-            android:ems="10"
             android:hint="Amount"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="135dp"
             tools:layout_editor_absoluteY="283dp" />

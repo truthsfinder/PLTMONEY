@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".UpdateExpense"
+    tools:showIn="@layout/activity_update_expense">
+
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="219dp"
+            android:layout_height="77dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="22dp"
+            android:text="EXPENSES"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="40dp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="44dp" />
+
+        <TextView
+            android:id="@+id/txtExpenseDate"
+            android:layout_width="71dp"
+            android:layout_height="19dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView3"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="108dp"
+            android:text="Date:"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="199dp" />
+
+        <EditText
+            android:id="@+id/editExpensesDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/txtExpenseDate"
+            android:layout_marginStart="13dp"
+            android:layout_toEndOf="@+id/txtExpenseDate"
+            android:ems="10"
+            android:onClick="setDate"
+            android:clickable="true"
+            android:editable="false"/>
+
+        <EditText
+            android:id="@+id/editExpensesAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/editExpensesDate"
+            android:layout_below="@+id/editExpensesDate"
+            android:layout_marginEnd="0dp"
+            android:ems="10"
+            android:inputType="number"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="135dp"
+            tools:layout_editor_absoluteY="214dp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="71dp"
+            android:layout_height="19dp"
+            android:layout_alignBottom="@+id/editExpensesAmount"
+            android:layout_toStartOf="@+id/editExpensesDate"
+            android:text="Amount:"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="246dp" />
+
+        <Spinner
+            android:id="@+id/spinnerExpensesCategory"
+            android:layout_width="214dp"
+            android:layout_height="47dp"
+            android:layout_alignStart="@+id/editExpensesAmount"
+            android:layout_below="@+id/editExpensesAmount"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="135dp"
+            tools:layout_editor_absoluteY="260dp" />
+
+        <TextView
+            android:id="@+id/txtExpenseCategory"
+            android:layout_width="71dp"
+            android:layout_height="18dp"
+            android:layout_alignBottom="@+id/spinnerExpensesCategory"
+            android:layout_alignStart="@+id/textView5"
+            android:text="Category:"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="291dp" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="147dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_below="@+id/spinnerExpensesCategory"
+            android:layout_marginStart="-38dp"
+            android:layout_marginTop="39dp"
+            android:text="Cancel"
+            android:onClick="cancel"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="341dp" />
+
+        <Button
+            android:id="@+id/updateBtn"
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/cancelBtn"
+            android:layout_alignBottom="@+id/cancelBtn"
+            android:layout_alignEnd="@+id/textView3"
+            android:layout_marginEnd="-42dp"
+            android:text="UPDATE"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="214dp"
+            tools:layout_editor_absoluteY="341dp" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

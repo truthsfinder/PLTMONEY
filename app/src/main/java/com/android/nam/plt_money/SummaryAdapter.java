@@ -21,7 +21,7 @@ import com.android.volley.toolbox.Volley;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class ExpenseAdapter extends ArrayAdapter<String> {
+public class SummaryAdapter extends ArrayAdapter<String> {
     private String[] expense_id;
     private String[] budget_id;
     private String[] category_name;
@@ -31,7 +31,7 @@ public class ExpenseAdapter extends ArrayAdapter<String> {
     private ArrayList<Categories> categories;
     Helper helper = new Helper();
 
-    public ExpenseAdapter(Activity context, String[] expense_id, String[] budget_id, String[] category_name, String[] expense_date, String[]expense_amount) {
+    public SummaryAdapter(Activity context, String[] expense_id, String[] budget_id, String[] category_name, String[] expense_date, String[]expense_amount) {
         super(context, R.layout.expense_list, expense_id);
         this.context = context;
         this.expense_id = expense_id;
@@ -45,6 +45,7 @@ public class ExpenseAdapter extends ArrayAdapter<String> {
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         final View listViewItem = inflater.inflate(R.layout.expense_list, null, true);
+
         TextView tv_expense_date = listViewItem.findViewById(R.id.expense_date);
         TextView tv_expense_amount = listViewItem.findViewById(R.id.expense_amount);
         TextView tv_expense_category = listViewItem.findViewById(R.id.expense_category);

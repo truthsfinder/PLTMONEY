@@ -8,10 +8,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -81,9 +79,6 @@ public class Expenses extends AppCompatActivity {
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
         showDialog(999);
-        Toast.makeText(getApplicationContext(), "ca",
-                Toast.LENGTH_SHORT)
-                .show();
     }
 
     @Override
@@ -203,7 +198,7 @@ public class Expenses extends AppCompatActivity {
                             public void onResponse(String response) {
                                 if(response.toString().trim().equals("success")){
                                     Toast.makeText(Expenses.this, "Expenses was successfully added!", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(Expenses.this, Home.class));
+                                    startActivity(new Intent(Expenses.this, Dashboard.class));
                                     finish();
                                 }else{
                                     Toast.makeText(Expenses.this, "Failed in adding an expense!" + response, Toast.LENGTH_LONG).show();

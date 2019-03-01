@@ -15,4 +15,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_forgot_password">Forgot Password</string>
     <string name="title_activity_update_category">UpdateCategory</string>
+    <string name="title_activity_update_expense">UpdateExpense</string>
+    <string name="title_activity_update_loan">Update Loan</string>
 </resources>

@@ -1,10 +1,12 @@
 package com.android.nam.plt_money;
 
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -60,9 +64,9 @@ public class Home extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.homepage, container, false);
 
-        Button btn_edit_budget = (Button) view.findViewById(R.id.editBudgetBtn);
+        Button btn_edit_budget = view.findViewById(R.id.editBudgetBtn);
 
-        Spinner sp_date = (Spinner) view.findViewById(R.id.txtDate);
+        Spinner sp_date = view.findViewById(R.id.txtDate);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, date_category);
         sp_date.setAdapter(adapter);
 
@@ -110,7 +114,7 @@ public class Home extends Fragment{
         }
 
         //Showing the progress dialog
-        final ProgressBar bar = (ProgressBar) view.findViewById(R.id.progressBar);
+        final ProgressBar bar = view.findViewById(R.id.progressBar);
         bar.setVisibility(View.VISIBLE);
 
         //SET DISPLAY FOR BUDGET DETAILS
@@ -135,6 +139,7 @@ public class Home extends Fragment{
                             status = stringData.getString(STATUS);
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(getActivity(), "No budget available!", Toast.LENGTH_LONG).show();
                         }
 
                         try{
@@ -142,12 +147,14 @@ public class Home extends Fragment{
                             SharedPreferences.Editor prefEditor = settings.edit();
 
                             prefEditor.remove("budget_id");
+                            prefEditor.remove("budget_amount");
                             prefEditor.commit();
 
                             prefEditor.putInt("budget_id", Integer.parseInt(budget_id));
+                            prefEditor.putFloat("budget_amount", Float.parseFloat(budget_amount));
                             prefEditor.commit();
 
-                            TextView tv_budget = (TextView) view.findViewById(R.id.txtBudget);
+                            TextView tv_budget = view.findViewById(R.id.txtBudget);
                             DecimalFormat df = new DecimalFormat("#,#00.0#");
 
                             getData();
@@ -204,11 +211,89 @@ public class Home extends Fragment{
     }
 
     private void showJSON(String json){
-        ListView listView = (ListView) view.findViewById(R.id.expense_listview);
+        ListView listView = view.findViewById(R.id.expense_listview);
         ParseExpense parse = new ParseExpense(json);
         parse.parseExpense();
 
-        ExpenseAdapter expenseAdapter = new ExpenseAdapter(getActivity(), ParseExpense.expense_id, ParseExpense.budget_id, ParseExpense.category_name, ParseExpense.expense_date, ParseExpense.expense_amount);
+        final ExpenseAdapter expenseAdapter = new ExpenseAdapter(getActivity(), ParseExpense.expense_id, ParseExpense.budget_id, ParseExpense.category_name, ParseExpense.expense_date, ParseExpense.expense_amount);
         listView.setAdapter(expenseAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            final int expense_id = Integer.parseInt(expenseAdapter.getItem(position));
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+            alertDialogBuilder.setMessage("Choose action: ");
+            alertDialogBuilder.setNegativeButton("UPDATE", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    Intent intent = new Intent(getActivity(), UpdateExpense.class);
+                    intent.putExtra("expense_id", expense_id);
+                    startActivity(intent);
+                }
+            });
+
+            alertDialogBuilder.setPositiveButton("DELETE",new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    delete_expense(expense_id);
+                }
+            });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+            }
+        });
+    }
+    
+    private void delete_expense(final int expense_id){
+        if (!helper.IsReachable(getActivity(), helper.get_delete_expense_url() + expense_id)) {
+            Toast.makeText(getActivity(), "Please check your internet connection!", Toast.LENGTH_LONG).show();
+        } else {
+            android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(getActivity());
+
+            alertDialogBuilder.setMessage("Are you sure you want to delete this expense?");
+            alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, helper.get_delete_expense_url() + expense_id,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            if(response.toString().trim().equals("success")){
+                                Toast.makeText(getActivity(), "Expenses was successfully deleted!", Toast.LENGTH_LONG).show();
+                                getData();
+                            }else{
+                                Toast.makeText(getActivity(), "Failed in deleting an expense!" + response, Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getActivity(), "Failed in connecting the database!", Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+                };
+
+                RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+                requestQueue.add(stringRequest);
+                }
+            });
+
+            alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+
+                }
+            });
+
+            android.app.AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
     }
 }

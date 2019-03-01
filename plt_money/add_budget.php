@@ -10,6 +10,7 @@
 
 	$query1 = "UPDATE `budget` SET budget_status = 'closed'
 	 		WHERE `user_id` = $user_id AND
+	 		budget_category = '$budget_category' AND
 			budget_status = 'active'";
 
 	mysqli_query($con, $query1);
