@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.5
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2019 at 11:53 AM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.8
+-- Generation Time: Mar 01, 2019 at 06:26 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -49,8 +49,7 @@ INSERT INTO `budget` (`budget_id`, `user_id`, `budget_amount`, `budget_category`
 (6, 1, 5000, 'Daily', 'closed'),
 (7, 1, 10000, 'Weekly', 'closed'),
 (8, 1, 5000, 'Daily', 'active'),
-(9, 1, 2500, 'Weekly', 'closed'),
-(10, 1, 60000, 'Monthly', 'closed');
+(9, 1, 20000, 'Weekly', 'active');
 
 -- --------------------------------------------------------
 
@@ -70,12 +69,11 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`category_id`, `user_id`, `category_name`, `category_status`) VALUES
-(4, 1, 'test 3', 'active'),
 (7, 1, 'test 4', 'active'),
 (8, 1, 'test 5', 'active'),
 (9, 1, 'test 6', 'active'),
 (10, 1, 'test 7', 'active'),
-(11, 1, 'ydtsys', 'active');
+(11, 1, 'axas', 'active');
 
 -- --------------------------------------------------------
 
@@ -97,8 +95,32 @@ CREATE TABLE `expense` (
 --
 
 INSERT INTO `expense` (`expense_id`, `budget_id`, `category_name`, `expense_date`, `expense_amount`, `expense_status`) VALUES
-(1, 8, 'Test', '2019-02-06', 1000, 'active'),
-(2, 8, 'test 5', '2019-02-26', 100, 'active');
+(3, 9, 'test 7', '2019-02-28', 45000, 'active'),
+(5, 9, 'test 4', '2019-02-28', 200, 'active'),
+(6, 1, '', '0000-00-00', 0, 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loan`
+--
+
+CREATE TABLE `loan` (
+  `loan_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `loan_borrower` varchar(1000) NOT NULL,
+  `loan_date_borrowed` date NOT NULL,
+  `loan_due_date` date NOT NULL,
+  `loan_amount` double NOT NULL,
+  `loan_status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loan`
+--
+
+INSERT INTO `loan` (`loan_id`, `user_id`, `loan_borrower`, `loan_date_borrowed`, `loan_due_date`, `loan_amount`, `loan_status`) VALUES
+(4, 1, 'Test', '2019-03-15', '2019-03-02', 1222, 'active');
 
 -- --------------------------------------------------------
 
@@ -142,6 +164,12 @@ ALTER TABLE `expense`
   ADD PRIMARY KEY (`expense_id`);
 
 --
+-- Indexes for table `loan`
+--
+ALTER TABLE `loan`
+  ADD PRIMARY KEY (`loan_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -155,7 +183,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budget_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `budget_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -167,7 +195,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `expense`
 --
 ALTER TABLE `expense`
-  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `loan`
+--
+ALTER TABLE `loan`
+  MODIFY `loan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
