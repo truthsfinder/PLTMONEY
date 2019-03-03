@@ -201,7 +201,7 @@ public class Expenses extends AppCompatActivity {
                                     startActivity(new Intent(Expenses.this, Dashboard.class));
                                     finish();
                                 }else{
-                                    Toast.makeText(Expenses.this, "Failed in adding an expense!" + response, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Expenses.this, "Failed in adding an expense!", Toast.LENGTH_LONG).show();
                                 }
                                 bar.setVisibility(View.GONE);
                             }

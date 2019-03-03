@@ -27,13 +27,14 @@ public class LoanAdapter extends ArrayAdapter<String> {
     private String[] loan_borrower;
     private String[] loan_date_borrowed;
     private String[] loan_due_date;
+    private String[] loan_due_time;
     private String[] loan_amount;
     private String[] loan_status;
     private Activity context;
     private ArrayList<Categories> categories;
     Helper helper = new Helper();
 
-    public LoanAdapter(Activity context, String[] loan_id, String[] user_id, String[] loan_borrower, String[] loan_date_borrowed, String[]loan_due_date, String[]loan_amount, String[]loan_status) {
+    public LoanAdapter(Activity context, String[] loan_id, String[] user_id, String[] loan_borrower, String[] loan_date_borrowed, String[]loan_due_date, String[]loan_due_time, String[]loan_amount, String[]loan_status) {
         super(context, R.layout.loan_list, loan_id);
         this.context = context;
         this.loan_id = loan_id;
@@ -41,6 +42,7 @@ public class LoanAdapter extends ArrayAdapter<String> {
         this.loan_borrower = loan_borrower;
         this.loan_date_borrowed = loan_date_borrowed;
         this.loan_due_date = loan_due_date;
+        this.loan_due_time = loan_due_time;
         this.loan_amount = loan_amount;
         this.loan_status = loan_status;
     }

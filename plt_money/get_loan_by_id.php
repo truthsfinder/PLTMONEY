@@ -18,6 +18,7 @@
 		 "loan_borrower"=>$row['loan_borrower'],
 		 "loan_date_borrowed"=>$row['loan_date_borrowed'],
 		 "loan_due_date"=>$row['loan_due_date'],
+		 "loan_due_time"=>$row['loan_due_time'],
 		 "loan_amount"=>$row['loan_amount'],
 		 "loan_status"=>$row['loan_status'],
 		 "status"=>'success'

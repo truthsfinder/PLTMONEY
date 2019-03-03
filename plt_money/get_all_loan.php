@@ -19,8 +19,9 @@
 				'loan_borrower'=>$row[2],
 				'loan_date_borrowed'=>$row[3],
 				'loan_due_date'=>$row[4],
-				'loan_amount'=>$row[5],
-				'loan_status'=>$row[6],
+				'loan_due_time'=>$row[5],
+				'loan_amount'=>$row[6],
+				'loan_status'=>$row[7],
 				"status"=>'success'
 			));
 		}

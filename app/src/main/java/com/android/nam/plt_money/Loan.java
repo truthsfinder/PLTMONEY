@@ -78,7 +78,7 @@ public class Loan extends AppCompatActivity {
         ParseLoan parse = new ParseLoan(json);
         parse.parseLoan();
 
-        final LoanAdapter loanAdapter = new LoanAdapter(Loan.this, ParseLoan.loan_id, ParseLoan.user_id, ParseLoan.loan_borrower, ParseLoan.loan_date_borrowed, ParseLoan.loan_due_date, ParseLoan.loan_amount, ParseLoan.loan_status);
+        final LoanAdapter loanAdapter = new LoanAdapter(Loan.this, ParseLoan.loan_id, ParseLoan.user_id, ParseLoan.loan_borrower, ParseLoan.loan_date_borrowed, ParseLoan.loan_due_date, ParseLoan.loan_due_time, ParseLoan.loan_amount, ParseLoan.loan_status);
         listView.setAdapter(loanAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

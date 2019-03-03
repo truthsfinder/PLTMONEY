@@ -10,6 +10,7 @@ public class ParseLoan {
     public static String[] loan_borrower;
     public static String[] loan_date_borrowed;
     public static String[] loan_due_date;
+    public static String[] loan_due_time;
     public static String[] loan_amount;
     public static String[] loan_status;
 
@@ -19,6 +20,7 @@ public class ParseLoan {
     public static final String LOAN_BORROWER = "loan_borrower";
     public static final String LOAN_DATE_BORROWED = "loan_date_borrowed";
     public static final String LOAN_DUE_DATE = "loan_due_date";
+    public static final String LOAN_DUE_TIME = "loan_due_time";
     public static final String LOAN_AMOUNT = "loan_amount";
     public static final String LOAN_STATUS = "loan_status";
 
@@ -41,6 +43,7 @@ public class ParseLoan {
             loan_borrower = new String[loan.length()];
             loan_date_borrowed = new String[loan.length()];
             loan_due_date = new String[loan.length()];
+            loan_due_time = new String[loan.length()];
             loan_amount = new String[loan.length()];
             loan_status = new String[loan.length()];
 
@@ -51,6 +54,7 @@ public class ParseLoan {
                 loan_borrower[i] = jo.getString(LOAN_BORROWER);
                 loan_date_borrowed[i] = jo.getString(LOAN_DATE_BORROWED);
                 loan_due_date[i] = jo.getString(LOAN_DUE_DATE);
+                loan_due_time[i] = jo.getString(LOAN_DUE_TIME);
                 loan_amount[i] = jo.getString(LOAN_AMOUNT);
                 loan_status[i] = jo.getString(LOAN_STATUS);
             }

@@ -84,14 +84,23 @@
             android:id="@+id/editLoanAmount"
             android:layout_width="299dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/etTime"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="168dp"
             android:hint="Amount"
             android:inputType="numberDecimal"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="135dp"
             tools:layout_editor_absoluteY="283dp" />
+
+        <EditText
+            android:id="@+id/etTime"
+            android:layout_width="299dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/editName"
+            android:layout_below="@+id/editDue"
+            android:ems="10"
+            android:hint="Due Time"
+            android:inputType="time" />
 
         <Button
             android:id="@+id/loancancelBtn"

@@ -3,11 +3,20 @@ package com.android.nam.plt_money;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -28,7 +37,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AddLoan extends AppCompatActivity{
-    private EditText editName, editDate, editDue, editLoanAmount;
+    View view;
+    private EditText editName, editDate, editDue, editLoanAmount, etTime;
     private Button loancancelBtn, loansaveBtn;
     Helper helper = new Helper();
 
@@ -57,6 +67,7 @@ public class AddLoan extends AppCompatActivity{
         editDate = findViewById(R.id.editDate);
         editDue = findViewById(R.id.editDue);
         editLoanAmount = findViewById(R.id.editLoanAmount);
+        etTime = findViewById(R.id.etTime);
 
         loancancelBtn = findViewById(R.id.loancancelBtn);
         loansaveBtn = findViewById(R.id.loansaveBtn);
@@ -100,6 +111,7 @@ public class AddLoan extends AppCompatActivity{
 
                                     if(response.toString().trim().equals("success")){
                                         Toast.makeText(AddLoan.this, "Loan was successfully added!", Toast.LENGTH_LONG).show();
+                                        sendNotification("Your loan will be due on " + editDue.getText().toString().trim() + " at " + etTime.getText().toString().trim());
                                         startActivity(new Intent(AddLoan.this, Loan.class));
                                         finish();
                                     }else{
@@ -121,6 +133,7 @@ public class AddLoan extends AppCompatActivity{
                                 params.put("editName", editName.getText().toString().trim());
                                 params.put("editDate", editDate.getText().toString().trim());
                                 params.put("editDue", editDue.getText().toString().trim());
+                                params.put("etTime", etTime.getText().toString().trim());
                                 params.put("editLoanAmount", editLoanAmount.getText().toString().trim());
 
                                 return params;
@@ -146,6 +159,36 @@ public class AddLoan extends AppCompatActivity{
             }
             }
         });
+    }
+
+    public void sendNotification(String message) {
+
+        Intent intent = new Intent(AddLoan.this, Loan.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(AddLoan.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(AddLoan.this,"default")
+                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setContentTitle("Loan Due Date")
+                .setContentText(message)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder.setChannelId("com.android.nam.plt_money");
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    "com.android.nam.plt_money",
+                    "My App",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
+        notificationManager.notify(2,builder.build());
     }
 
     @SuppressWarnings("deprecation")

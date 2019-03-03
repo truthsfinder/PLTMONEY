@@ -3,12 +3,18 @@ package com.android.nam.plt_money;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -42,6 +48,7 @@ public class UpdateLoan extends AppCompatActivity {
     public static final String LOAN_BORROWER = "loan_borrower";
     public static final String LOAN_DATE_BORROWED = "loan_date_borrowed";
     public static final String LOAN_DUE_DATE = "loan_due_date";
+    public static final String LOAN_DUE_TIME = "loan_due_time";
     public static final String LOAN_AMOUNT = "loan_amount";
     public static final String LOAN_STATUS = "loan_status";
 
@@ -51,6 +58,7 @@ public class UpdateLoan extends AppCompatActivity {
     private static String loan_borrower;
     private static String loan_date_borrowed;
     private static String loan_due_date;
+    private static String loan_due_time;
     private static String loan_amount;
     private static String loan_status;
 
@@ -94,6 +102,7 @@ public class UpdateLoan extends AppCompatActivity {
                 final EditText et_loan_borrower = (EditText) findViewById(R.id.editName);
                 final EditText et_loan_date_borrowed = (EditText) findViewById(R.id.editDate);
                 final EditText et_loan_due_date = (EditText) findViewById(R.id.editDue);
+                final EditText et_loan_due_time = (EditText) findViewById(R.id.etTime);
                 final EditText et_loan_amount = (EditText) findViewById(R.id.editLoanAmount);
 
                 //Showing the progress dialog
@@ -123,6 +132,7 @@ public class UpdateLoan extends AppCompatActivity {
 
                                         if(response.toString().trim().equals("success")){
                                             Toast.makeText(UpdateLoan.this, "Loan was successfully updated!", Toast.LENGTH_LONG).show();
+                                            sendNotification("Your loan will be due on " + et_loan_due_date.getText().toString().trim() + " at " + et_loan_due_time.getText().toString().trim());
                                             startActivity(new Intent(UpdateLoan.this, Loan.class));
                                             finish();
                                         }else{
@@ -144,6 +154,7 @@ public class UpdateLoan extends AppCompatActivity {
                                     params.put("loan_borrower", et_loan_borrower.getText().toString().trim());
                                     params.put("loan_date_borrowed", et_loan_date_borrowed.getText().toString().trim());
                                     params.put("loan_due_date", et_loan_due_date.getText().toString().trim());
+                                    params.put("loan_due_time", et_loan_due_time.getText().toString().trim());
                                     params.put("loan_amount", et_loan_amount.getText().toString().trim());
 
                                     return params;
@@ -201,6 +212,7 @@ public class UpdateLoan extends AppCompatActivity {
                             loan_borrower = stringData.getString(LOAN_BORROWER);
                             loan_date_borrowed = stringData.getString(LOAN_DATE_BORROWED);
                             loan_due_date = stringData.getString(LOAN_DUE_DATE);
+                            loan_due_time = stringData.getString(LOAN_DUE_TIME);
                             loan_amount = stringData.getString(LOAN_AMOUNT);
                             loan_status = stringData.getString(LOAN_STATUS);
 
@@ -231,6 +243,36 @@ public class UpdateLoan extends AppCompatActivity {
             RequestQueue requestQueue = Volley.newRequestQueue(UpdateLoan.this);
             requestQueue.add(stringRequest);
         }
+    }
+
+    public void sendNotification(String message) {
+
+        Intent intent = new Intent(UpdateLoan.this, Loan.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(UpdateLoan.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(UpdateLoan.this,"default")
+                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setContentTitle("Loan Due Date")
+                .setContentText(message)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder.setChannelId("com.android.nam.plt_money");
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    "com.android.nam.plt_money",
+                    "My App",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
+        notificationManager.notify(2,builder.build());
     }
 
     @SuppressWarnings("deprecation")
