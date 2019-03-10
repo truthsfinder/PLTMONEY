@@ -38,6 +38,7 @@ public class UpdateExpense extends AppCompatActivity {
 
     public static final String JSON_ARRAY = "result";
     public static final String EXPENSE_DATE = "expense_date";
+    public static final String EXPENSE_NAME = "expense_name";
     public static final String EXPENSE_AMOUNT = "expense_amount";
     public static final String EXPENSE_CATEGORY = "expense_category";
     public static final String EXPENSE_ID = "expense_id";
@@ -47,6 +48,7 @@ public class UpdateExpense extends AppCompatActivity {
 
     private String expense_date;
     private String expense_amount;
+    private String expense_name;
     private String expense_category;
     private int category_id;
     private String expense;
@@ -82,6 +84,7 @@ public class UpdateExpense extends AppCompatActivity {
             public void onClick(View view) {
                 final int expense_id = getIntent().getExtras().getInt("expense_id");
                 final Spinner spinner = (Spinner) findViewById(R.id.spinnerExpensesCategory);
+                final EditText et_name = (EditText) findViewById(R.id.editExpensesName);
                 final EditText et_date = (EditText) findViewById(R.id.editExpensesDate);
                 final EditText et_amount = (EditText) findViewById(R.id.editExpensesAmount);
 
@@ -105,7 +108,7 @@ public class UpdateExpense extends AppCompatActivity {
                                                 startActivity(new Intent(UpdateExpense.this, Dashboard.class));
                                                 finish();
                                             }else{
-                                                Toast.makeText(UpdateExpense.this, "Failed in updating an expense!" + response, Toast.LENGTH_LONG).show();
+                                                Toast.makeText(UpdateExpense.this, "Failed in updating an expense!", Toast.LENGTH_LONG).show();
                                             }
                                         }
                                     },
@@ -120,6 +123,7 @@ public class UpdateExpense extends AppCompatActivity {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put("expense_date", et_date.getText().toString().trim());
+                                    params.put("expense_name", et_name.getText().toString().trim());
                                     params.put("expense_amount", et_amount.getText().toString().trim());
                                     params.put("expense_category", spinner.getSelectedItem().toString().trim());
 
@@ -194,6 +198,7 @@ public class UpdateExpense extends AppCompatActivity {
         final int expense_id = getIntent().getExtras().getInt("expense_id");
         final Spinner spinner = (Spinner) findViewById(R.id.spinnerExpensesCategory);
         final EditText et_date = (EditText) findViewById(R.id.editExpensesDate);
+        final EditText et_name = (EditText) findViewById(R.id.editExpensesName);
         final EditText et_amount = (EditText) findViewById(R.id.editExpensesAmount);
 
         //Showing the progress dialog
@@ -215,6 +220,7 @@ public class UpdateExpense extends AppCompatActivity {
                             JSONObject stringData = result.getJSONObject(0);
 
                             expense = stringData.getString(EXPENSE_ID);
+                            expense_name = stringData.getString(EXPENSE_NAME);
                             expense_date = stringData.getString(EXPENSE_DATE);
                             expense_amount = stringData.getString(EXPENSE_AMOUNT);
                             expense_category = stringData.getString(CATEGORY_NAME);
@@ -223,6 +229,7 @@ public class UpdateExpense extends AppCompatActivity {
                         }
                         bar.setVisibility(View.GONE);
                         try{
+                            et_name.setText(expense_name);
                             et_date.setText(expense_date);
                             et_amount.setText(expense_amount);
                             spinner.setSelected(true);

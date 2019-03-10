@@ -16,6 +16,7 @@
 			$result = array();
 			array_push($result,array(
 			 "expense_id"=>$row['expense_id'],
+			 "expense_name"=>$row['expense_name'],
 			 "budget_id"=>$row['budget_id'],
 			 "category_name"=>$row['category_name'],
 			 "expense_date"=>$row['expense_date'],
@@ -29,6 +30,7 @@
 			$result = array();
 			array_push($result,array(
 			 "expense_id" => 0,
+			 "expense_name" => '',
 			 "budget_id" => 0,
 			 "category_name" => '',
 			 "expense_date" =>'',

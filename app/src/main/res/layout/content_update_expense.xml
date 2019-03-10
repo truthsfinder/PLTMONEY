@@ -15,6 +15,25 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
+        <EditText
+            android:id="@+id/editExpensesName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editExpensesDate"
+            android:layout_alignStart="@+id/editExpensesDate"
+            android:ems="10" />
+
+        <TextView
+            android:id="@+id/txtExpenseName"
+            android:layout_width="71dp"
+            android:layout_height="19dp"
+            android:layout_above="@+id/editExpensesDate"
+            android:layout_alignStart="@+id/txtExpenseDate"
+            android:text="Name:"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="199dp" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="219dp"

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="10dp"
+    android:padding="5dp"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -87,7 +87,6 @@
             android:layout_above="@+id/summary_listview"
             android:background="#000000"
             android:shrinkColumns="*"
-            android:layout_marginRight="8dp"
             android:stretchColumns="*"
             tools:ignore="MissingConstraints">
 
@@ -99,15 +98,23 @@
 
                 <TextView
                     android:id="@+id/textItem"
-                    android:layout_width="wrap_content"
+                    android:layout_width="81dp"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:gravity="center"
-                    android:text="ITEM" />
+                    android:text="DATE" />
+
+                <TextView
+                    android:id="@+id/textItem3"
+                    android:layout_width="113dp"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:text="NAME" />
 
                 <TextView
                     android:id="@+id/textCategory"
-                    android:layout_width="wrap_content"
+                    android:layout_width="87dp"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:gravity="center"
@@ -115,10 +122,10 @@
 
                 <TextView
                     android:id="@+id/textAmount"
-                    android:layout_width="wrap_content"
+                    android:layout_width="87dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
                     android:background="@android:color/white"
+                    android:layout_marginRight="0dp"
                     android:gravity="center"
                     android:text="AMOUNT" />
             </TableRow>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2019 at 06:51 PM
+-- Generation Time: Mar 10, 2019 at 06:23 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -36,6 +36,14 @@ CREATE TABLE `budget` (
   `budget_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `budget`
+--
+
+INSERT INTO `budget` (`budget_id`, `user_id`, `budget_amount`, `budget_category`, `budget_status`) VALUES
+(1, 1, 2500, 'Daily', 'active'),
+(2, 1, 15000, 'Weekly', 'active');
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +57,13 @@ CREATE TABLE `category` (
   `category_status` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `user_id`, `category_name`, `category_status`) VALUES
+(1, 1, 'test 1', 'active');
+
 -- --------------------------------------------------------
 
 --
@@ -57,12 +72,22 @@ CREATE TABLE `category` (
 
 CREATE TABLE `expense` (
   `expense_id` int(11) NOT NULL,
+  `expense_name` varchar(1000) NOT NULL,
   `budget_id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
   `expense_date` date NOT NULL,
   `expense_amount` double NOT NULL,
   `expense_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `expense`
+--
+
+INSERT INTO `expense` (`expense_id`, `expense_name`, `budget_id`, `category_name`, `expense_date`, `expense_amount`, `expense_status`) VALUES
+(2, 'snack', 1, 'test 1', '2019-03-10', 1500, 'active'),
+(3, 'snack', 1, 'test 1', '2019-03-09', 2500, 'active'),
+(4, 'snack', 1, 'test 1', '2019-03-01', 2500, 'active');
 
 -- --------------------------------------------------------
 
@@ -81,6 +106,13 @@ CREATE TABLE `loan` (
   `loan_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loan`
+--
+
+INSERT INTO `loan` (`loan_id`, `user_id`, `loan_borrower`, `loan_date_borrowed`, `loan_due_date`, `loan_due_time`, `loan_amount`, `loan_status`) VALUES
+(1, 1, 'test', '2019-03-10', '2019-03-10', '12:00:00', 2500, 'active');
+
 -- --------------------------------------------------------
 
 --
@@ -92,6 +124,13 @@ CREATE TABLE `user` (
   `username` varchar(1000) NOT NULL,
   `password` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `username`, `password`) VALUES
+(1, 'war', '202cb962ac59075b964b07152d234b70');
 
 --
 -- Indexes for dumped tables
@@ -135,31 +174,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budget_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `budget_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `expense`
 --
 ALTER TABLE `expense`
-  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `loan`
 --
 ALTER TABLE `loan`
-  MODIFY `loan_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `loan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

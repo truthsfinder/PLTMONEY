@@ -142,6 +142,8 @@ public class Home extends Fragment{
                             Toast.makeText(getActivity(), "No budget available!", Toast.LENGTH_LONG).show();
                         }
 
+                        bar.setVisibility(View.GONE);
+
                         try{
                             SharedPreferences settings = getActivity().getSharedPreferences("MyPrefs", MODE_PRIVATE);
                             SharedPreferences.Editor prefEditor = settings.edit();
@@ -160,8 +162,6 @@ public class Home extends Fragment{
                             getData();
 
                             tv_budget.setText(df.format(Double.parseDouble(budget_amount)));
-
-                            bar.setVisibility(View.GONE);
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -215,7 +215,7 @@ public class Home extends Fragment{
         ParseExpense parse = new ParseExpense(json);
         parse.parseExpense();
 
-        final ExpenseAdapter expenseAdapter = new ExpenseAdapter(getActivity(), ParseExpense.expense_id, ParseExpense.budget_id, ParseExpense.category_name, ParseExpense.expense_date, ParseExpense.expense_amount);
+        final ExpenseAdapter expenseAdapter = new ExpenseAdapter(getActivity(), ParseExpense.expense_id, ParseExpense.expense_name, ParseExpense.budget_id, ParseExpense.category_name, ParseExpense.expense_date, ParseExpense.expense_amount);
         listView.setAdapter(expenseAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

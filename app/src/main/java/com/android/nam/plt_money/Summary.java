@@ -142,7 +142,7 @@ public class Summary extends AppCompatActivity{
         ParseExpense parse = new ParseExpense(json);
         parse.parseExpense();
 
-        SummaryAdapter summaryAdapter = new SummaryAdapter(Summary.this, ParseExpense.expense_id, ParseExpense.budget_id, ParseExpense.category_name, ParseExpense.expense_date, ParseExpense.expense_amount);
+        SummaryAdapter summaryAdapter = new SummaryAdapter(Summary.this, ParseExpense.expense_id, ParseExpense.expense_name, ParseExpense.budget_id, ParseExpense.category_name, ParseExpense.expense_date, ParseExpense.expense_amount);
         listView.setAdapter(summaryAdapter);
     }
 

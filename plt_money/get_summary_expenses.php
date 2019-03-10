@@ -8,16 +8,15 @@
  		$category = "";
 
  		if($budget_category == 0){
- 			$category = "Daily";
+ 			$category = "DAY";
  		}else if($budget_category == 1){
- 			$category = "Weekly";
+ 			$category = "WEEK";
  		}else{
- 			$category = "Monthly";
+ 			$category = "MONTH";
  		}
 	 	
-	 	$query = "SELECT expense.expense_id, expense.budget_id, expense.category_name, expense.expense_date, expense.expense_amount FROM `expense` 
-				LEFT JOIN budget ON expense.budget_id = budget.budget_id
-				WHERE budget.budget_category = '$category' AND budget.budget_status = 'active'";
+	 	$query = "SELECT expense.expense_id, expense.expense_name, expense.budget_id, expense.category_name, expense.expense_date, expense.expense_amount FROM `expense` 
+				WHERE `expense`.`expense_date` >= SUBDATE(CURDATE(), INTERVAL 1 $category)";
 	 
 	 	$res = mysqli_query($con,$query);
 	 	
@@ -26,10 +25,11 @@
 		while($row = mysqli_fetch_array($res)){
 			array_push($result,
 				array('expense_id'=>$row[0],
-				'budget_id'=>$row[1],
-				'category_name'=>$row[2],
-				'expense_date'=>$row[3],
-				'expense_amount'=>$row[4],
+				'expense_name'=>$row[1],
+				'budget_id'=>$row[2],
+				'category_name'=>$row[3],
+				'expense_date'=>$row[4],
+				'expense_amount'=>$row[5],
 				"status"=>'success'
 			));
 		}

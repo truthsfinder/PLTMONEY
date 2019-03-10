@@ -17,8 +17,11 @@
 
 		if($row){
 			//get expenses
-			$query2 = "SELECT SUM(expense.expense_amount) as total_expense FROM `expense` 
-		 		WHERE `expense`.`budget_id` = " . $row['budget_id'];
+			//$query2 = "SELECT SUM(expense.expense_amount) as total_expense FROM `expense` 
+		 	//	WHERE `expense`.`budget_id` = " . $row['budget_id'];
+
+		 	$query2 = "SELECT SUM(expense.expense_amount) as total_expense FROM `expense` 
+		 		WHERE `expense`.`expense_date` >= SUBDATE(CURDATE(), INTERVAL 1 DAY) ";
 
 		 	$res2 = mysqli_query($con,$query2);
 			$row2 = mysqli_fetch_array($res2);

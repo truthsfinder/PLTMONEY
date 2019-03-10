@@ -22,8 +22,19 @@
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/expense_name"
+            android:layout_width="106dp"
+            android:layout_height="45dp"
+            android:background="#e8e7e5"
+            android:layout_marginLeft="3dp"
+            android:padding="5sp"
+            android:text="TextView"
+            android:textColor="#000"
+            android:textSize="15sp" />
+
+        <TextView
             android:id="@+id/expense_category"
-            android:layout_width="165dp"
+            android:layout_width="109dp"
             android:layout_height="45dp"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"

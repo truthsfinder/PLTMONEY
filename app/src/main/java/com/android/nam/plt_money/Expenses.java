@@ -39,6 +39,7 @@ public class Expenses extends AppCompatActivity {
 
     public static final String JSON_ARRAY = "result";
     public static final String EXPENSE_DATE = "expense_date";
+    public static final String EXPENSE_NAME = "expense_name";
     public static final String EXPENSE_AMOUNT = "expense_amount";
     public static final String EXPENSE_CATEGORY = "expense_category";
     public static final String CATEGORY_ID = "category_id";
@@ -46,6 +47,7 @@ public class Expenses extends AppCompatActivity {
     public static final String CATEGORY_STATUS = "status";
 
     private String expense_date;
+    private String expense_name;
     private String expense_amount;
     private String expense_category;
     private int category_id;
@@ -165,10 +167,12 @@ public class Expenses extends AppCompatActivity {
     
     public void add_expense(View view){
         final int budget_id = getIntent().getExtras().getInt("budget_id");
+        EditText et_expense_name = (EditText) findViewById(R.id.editExpensesName);
         EditText et_expense_date = (EditText) findViewById(R.id.editExpensesDate);
         EditText et_expense_amount = (EditText) findViewById(R.id.editExpensesAmount);
         Spinner sp_category = (Spinner) findViewById(R.id.spinnerExpensesCategory);
 
+        expense_name = et_expense_name.getText().toString().trim();
         expense_date = et_expense_date.getText().toString().trim();
         expense_amount = et_expense_amount.getText().toString().trim();
         category_name = sp_category.getSelectedItem().toString().trim();
@@ -217,6 +221,7 @@ public class Expenses extends AppCompatActivity {
                         @Override
                         protected Map<String, String> getParams() {
                             Map<String, String> params = new HashMap<String, String>();
+                            params.put(EXPENSE_NAME, expense_name);
                             params.put(EXPENSE_DATE, expense_date);
                             params.put(EXPENSE_AMOUNT, expense_amount);
                             params.put(CATEGORY_NAME, category_name);
